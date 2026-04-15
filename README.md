@@ -70,3 +70,8 @@ Contributions are welcome. Please open an issue first to discuss what you would 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/) - Cynthia Teeters
+
+---
+
+HAP™ Educational Content © 2026 Cynthia Teeters. All rights reserved.
+HyBit A. ProtoBot™ (HAP™) character and the apprentice learning methodology are proprietary educational innovations.
