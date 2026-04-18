@@ -82,7 +82,7 @@ npm install -g netlify-cli
 
 ## Local setup
 
-Once steps 1–4 are done:
+Once steps 1–4 are done, clone and install:
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/hap-silly-404.git
@@ -90,18 +90,38 @@ cd hap-silly-404
 npm install
 netlify login
 netlify link
+```
+
+When `netlify link` prompts, choose "Use current git remote origin."
+
+Now set `SITE_URL` — it's not a secret so you can set it directly from the CLI. Use your actual Netlify site URL from step 3:
+
+```bash
+netlify env:set SITE_URL https://your-site-name.netlify.app
+netlify deploy --prod
+```
+
+This updates the live site so the function knows its own origin. Without this step the function returns a 500 error — that's intentional fail-closed behavior, not a bug.
+
+Now start the local dev server:
+
+```bash
 netlify dev
 ```
 
-When `netlify link` prompts, choose "Use current git remote origin." This pulls your environment variables from the Netlify dashboard into your local dev session.
+Visit `http://localhost:8888/404`. Open DevTools → Network → click the `insult` request → Preview. You should see:
 
-Visit `http://localhost:8888/404`. Open DevTools → Network → click the `insult` request → Preview. You should see `"source": "groq"`. If you see `"source": "fallback"`, the API key isn't reaching the function — check `netlify status` and confirm the variables are set in the dashboard.
+```json
+{ "insult": "...", "source": "groq" }
+```
 
-> Always use port **8888**, not 3999. The CLI runs the static server on 3999 internally; 8888 is where the function runtime and redirects live.
+If `source` is `"fallback"`, the API key isn't reaching the function. Run `netlify status` to confirm the site is linked and check that `GROQ_API_KEY` is set in the dashboard.
 
-**Do not start the assignment until `"source": "groq"` appears.** See `docs/tutorials/local-debugging-with-devtools-and-netlify-dev.md` if you're stuck.
+> Always use port **8888**, not 3999. The CLI runs the static server on 3999 internally; 8888 is where functions and redirects live.
 
-Once the local server is returning live roasts, open `docs/INSTRUCTIONS.md` to begin the assignment.
+**Do not start the assignment until `"source": "groq"` appears in both local DevTools and on the live site.** See `docs/tutorials/local-debugging-with-devtools-and-netlify-dev.md` if you're stuck.
+
+Once everything is working, open `docs/INSTRUCTIONS.md` to begin the assignment.
 
 ---
 
