@@ -21,7 +21,7 @@ updated: 2026-04-18
 - [ ] Run `npm install --save-dev vitest`
 - [ ] Add `"test": "vitest run"` to `package.json` scripts
 - [ ] Add `"test:watch": "vitest"` to `package.json` scripts
-- [ ] Create `tests/` folder (`specs/` already exists in the repo)
+- [ ] Confirm `tests/` and `specs/` folders exist (both ship with the repo)
 - [ ] Run `npx vitest` — confirm it starts (zero tests is fine)
 
 ## Read tutorials (check off as you read)

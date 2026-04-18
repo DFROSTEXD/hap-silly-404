@@ -58,13 +58,15 @@ You should have:
    netlify link
    ```
 
+   If you don't have a Netlify site yet, run `netlify sites:create` first and give it a name. Then run `netlify link` and choose "Use current git remote origin."
+
 4. Start the local dev server:
 
    ```bash
    netlify dev
    ```
 
-5. Visit `http://localhost:8888/404` in your browser. Confirm the page loads and a roast appears. If it shows a canned fallback roast rather than a live one, that's fine for now — it means `GROQ_API_KEY` isn't set yet. The page itself should still render.
+5. Visit `http://localhost:8888/404` in your browser. Confirm the page loads and a roast appears. If the roast sounds canned ("You typed something. The server looked. Nothing.") rather than freshly generated, that's fine — it means `GROQ_API_KEY` isn't wired up yet. The function is still running correctly. Live roasts require the key to be set in the Netlify dashboard and the site to be linked.
 
 6. Read `AGENTS.md` before opening Copilot Chat. It is the contract between you and your AI agent. The security rules in it are non-negotiable.
 
@@ -87,15 +89,9 @@ Before reading the tutorials or starting either track, get vitest running:
    "test:watch": "vitest"
    ```
 
-3. Create the tests directory:
+   Both `tests/` and `specs/` folders are already in the repo. `tests/` is where your vitest files go. `specs/` is where your approved spec files go, one per feature.
 
-   ```bash
-   mkdir tests
-   ```
-
-   A `specs/` folder is already in the repo — that's where your approved spec files go, one per feature.
-
-4. Run vitest to confirm the setup:
+3. Run vitest to confirm the setup:
 
    ```bash
    npx vitest
@@ -103,7 +99,7 @@ Before reading the tutorials or starting either track, get vitest running:
 
    It should start and report zero tests found. That is correct — you haven't written any yet.
 
-5. Read `docs/tutorials/tdd-with-vitest.md` before writing any tests.
+4. Read `docs/tutorials/tdd-with-vitest.md` before writing any tests.
 
 ---
 
