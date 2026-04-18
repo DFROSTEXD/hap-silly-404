@@ -24,33 +24,16 @@ Both tracks follow the same workflow: propose → spec → implement → verify.
 
 ---
 
-## Before you start — accounts and tools
+## Before you start
 
-Do these once before touching any code. The order matters.
+If you're reading this locally, you should already have:
 
-**1. Get a Groq API key**
+- A Groq API key generated at [console.groq.com](https://console.groq.com)
+- This repo forked to your GitHub account
+- A Netlify site created with `GROQ_API_KEY` and `SITE_URL` set in the dashboard
+- The Netlify CLI installed (`npm install -g netlify-cli`)
 
-Go to [console.groq.com](https://console.groq.com), create a free account, and generate an API key. Copy it — you'll need it in the next step. Do not put it in any file.
-
-**2. Fork this repo on GitHub**
-
-Fork to your own account. Do not clone yet.
-
-**3. Create a Netlify site and add the secret**
-
-- Go to [app.netlify.com](https://app.netlify.com) and create a new site. You can deploy from your fork or create a blank site — either works.
-- In the Netlify dashboard: **Site configuration → Environment variables → Add variable**
-  - Key: `GROQ_API_KEY` — Value: your key from step 1
-  - Key: `SITE_URL` — Value: your Netlify site URL (e.g. `https://your-site-name.netlify.app`)
-- The key lives here only. Never put it in code or `.env`.
-
-**4. Install the Netlify CLI**
-
-```bash
-npm install -g netlify-cli
-```
-
-**5. Install Node.js v22 or later** if you haven't already. Check with `node --version`.
+If any of those aren't done yet, stop and follow the setup steps in `README.md` first.
 
 ---
 

@@ -52,15 +52,36 @@ This project is hardened beyond the minimum — the `docs/` folder explains how 
 
 ---
 
-## Beginner's guide
+## Before you fork — do these first
 
-### What you need
+The order matters. Do not clone until steps 1–4 are done.
 
-- A [Netlify account](https://netlify.com) (free)
-- A [Groq API key](https://console.groq.com) (free tier)
-- The [Netlify CLI](https://docs.netlify.com/cli/get-started/) installed: `npm install -g netlify-cli`
+**1. Get a Groq API key**
 
-### Setup
+Go to [console.groq.com](https://console.groq.com), create a free account, and generate an API key. Copy it — you'll need it in step 3. Do not put it in any file and do not paste it into any AI tool. Treat it like a password.
+
+**2. Fork this repo**
+
+Fork to your own GitHub account. This is your working copy.
+
+**3. Create a Netlify site and add secrets**
+
+- Go to [app.netlify.com](https://app.netlify.com) and create a new site. If prompted to connect a repo, connect your fork. Otherwise create a blank site — you can connect it later.
+- In the dashboard: **Site configuration → Environment variables → Add variable**
+  - `GROQ_API_KEY` — your key from step 1
+  - `SITE_URL` — your Netlify site URL (e.g. `https://your-site-name.netlify.app`)
+
+**4. Install the Netlify CLI**
+
+```bash
+npm install -g netlify-cli
+```
+
+---
+
+## Local setup
+
+Once steps 1–4 are done:
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/hap-silly-404.git
@@ -68,31 +89,18 @@ cd hap-silly-404
 npm install
 netlify login
 netlify link
-```
-
-Set your environment variables in the Netlify dashboard under **Site configuration → Environment variables**:
-
-- `GROQ_API_KEY` — required for live roasts; without it the function returns hardcoded fallback roasts
-- `SITE_URL` — required in production only; set to your site's canonical origin (e.g. `https://hap-silly-404.netlify.app`); the function fails closed if this is missing in production
-- `GROQ_MODEL` — optional; defaults to `llama-3.3-70b-versatile`
-
-### Running locally
-
-```bash
 netlify dev
 ```
 
-Visit `http://localhost:8888/this-page-does-not-exist` to trigger the 404 page. The function auto-detects `NETLIFY_DEV=true` and allows `http://localhost:8888` as the origin — no local env config needed beyond linking the site.
+When `netlify link` prompts, choose "Use current git remote origin." This pulls your environment variables from the Netlify dashboard into your local dev session.
+
+Visit `http://localhost:8888/404`. Open DevTools → Network → click the `insult` request → Preview. You should see `"source": "groq"`. If you see `"source": "fallback"`, the API key isn't reaching the function — check `netlify status` and confirm the variables are set in the dashboard.
 
 > Always use port **8888**, not 3999. The CLI runs the static server on 3999 internally; 8888 is where the function runtime and redirects live.
 
-Any path that doesn't match a real file will trigger the 404:
+**Do not start the assignment until `"source": "groq"` appears.** See `docs/tutorials/local-debugging-with-devtools-and-netlify-dev.md` if you're stuck.
 
-```
-http://localhost:8888/this-page-does-not-exist
-http://localhost:8888/oops
-http://localhost:8888/404
-```
+Once the local server is returning live roasts, open `docs/INSTRUCTIONS.md` to begin the assignment.
 
 ---
 

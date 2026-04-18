@@ -8,10 +8,10 @@ updated: 2026-04-18
 
 # Assignment checklist
 
-## Before you start
+## Before you clone (do these on GitHub and Netlify first)
 
-- [ ] Groq API key generated at console.groq.com
-- [ ] Repo forked on GitHub
+- [ ] Groq API key generated at console.groq.com — not shared with any AI tool
+- [ ] Repo forked to your GitHub account
 - [ ] Netlify site created
 - [ ] `GROQ_API_KEY` added to Netlify dashboard environment variables
 - [ ] `SITE_URL` added to Netlify dashboard environment variables
@@ -22,7 +22,7 @@ updated: 2026-04-18
 - [ ] Repo cloned and `npm install` run
 - [ ] `netlify login` and `netlify link` completed
 - [ ] `netlify dev` running
-- [ ] `http://localhost:8888/404` loads with a **live** roast (not a canned fallback)
+- [ ] DevTools → Network → `insult` request shows `"source": "groq"`
 - [ ] Read `AGENTS.md`
 
 ## Vitest and specs
