@@ -66,10 +66,11 @@ Fork to your own GitHub account. This is your working copy.
 
 **3. Create a Netlify site and add secrets**
 
-- Go to [app.netlify.com](https://app.netlify.com) and create a new site. If prompted to connect a repo, connect your fork. Otherwise create a blank site — you can connect it later.
-- In the dashboard: **Site configuration → Environment variables → Add variable**
+- Go to [app.netlify.com](https://app.netlify.com), click "Add new site" → "Import an existing project", and connect your fork.
+- On the configuration screen (before you click "Deploy"), scroll down to **Environment variables** and click **Add environment variables**. Add both now:
   - `GROQ_API_KEY` — your key from step 1
-  - `SITE_URL` — your Netlify site URL (e.g. `https://your-site-name.netlify.app`)
+  - `SITE_URL` — your Netlify site URL (e.g. `https://your-site-name.netlify.app`). If you don't know the URL yet, enter a placeholder — you can update it after the first deploy when Netlify assigns the URL.
+- Then click **Deploy**. Adding the variables at this step is easier than finding the settings page later.
 
 **4. Install the Netlify CLI**
 
