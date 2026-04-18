@@ -65,13 +65,12 @@ export const config = {
  * while local dev "just works" with no extra setup.
  */
 const isLocalDev = process.env.NETLIFY_DEV === "true";
-const ALLOWED_ORIGIN =
-  process.env.SITE_URL || (isLocalDev ? "http://localhost:8888" : undefined);
+const ALLOWED_ORIGIN = process.env.SITE_URL || (isLocalDev ? "http://localhost:8888" : undefined);
 
 if (!ALLOWED_ORIGIN) {
   console.error(
     "SITE_URL is not set in production env. Insult function will return 500. " +
-      "Set SITE_URL in the Netlify dashboard (Site configuration → Environment variables)."
+      "Set SITE_URL in the Netlify dashboard (Site configuration → Environment variables).",
   );
 }
 
@@ -102,10 +101,10 @@ export default async function handler(request) {
    * everything else (POST, PUT, DELETE, ...) makes intent explicit and
    * stops accidental writes from random clients. */
   if (request.method !== "GET") {
-    return new Response(
-      JSON.stringify({ error: "Method not allowed. Use GET." }),
-      { status: 405, headers: CORS_HEADERS }
-    );
+    return new Response(JSON.stringify({ error: "Method not allowed. Use GET." }), {
+      status: 405,
+      headers: CORS_HEADERS,
+    });
   }
 
   /* Production-misconfig guard: if SITE_URL is missing in production,
@@ -130,8 +129,7 @@ export default async function handler(request) {
   const referer = request.headers.get("referer");
 
   const sameOriginRequest =
-    (origin && origin === ALLOWED_ORIGIN) ||
-    (referer && referer.startsWith(ALLOWED_ORIGIN));
+    (origin && origin === ALLOWED_ORIGIN) || (referer && referer.startsWith(ALLOWED_ORIGIN));
 
   if (!sameOriginRequest) {
     return new Response(JSON.stringify({ error: "Forbidden." }), {
@@ -148,10 +146,10 @@ export default async function handler(request) {
   /* No API key — return a fallback rather than an error. This keeps the
    * page working during local dev or before keys are wired up. */
   if (!apiKey) {
-    return new Response(
-      JSON.stringify({ insult: randomFallback(), source: "fallback" }),
-      { status: 200, headers: CORS_HEADERS }
-    );
+    return new Response(JSON.stringify({ insult: randomFallback(), source: "fallback" }), {
+      status: 200,
+      headers: CORS_HEADERS,
+    });
   }
 
   /* Vary the prompt angle so consecutive roasts feel different. */
@@ -179,51 +177,48 @@ export default async function handler(request) {
      * request body shape (model + messages array) matches what you would
      * send to OpenAI's API. The Authorization header carries our API key
      * as a "Bearer token" — a standard auth scheme. */
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model,
-          messages: [
-            /* The "system" message sets the assistant's behavior — its
-             * tone, topic, and what to avoid. The "user" message is the
-             * actual request. Keeping the system prompt strict reduces
-             * the chance of off-topic or unsafe output. */
-            {
-              role: "system",
-              content:
-                "You write short, witty one-liners for a fun 404 error page. Keep it clean, lighthearted, and family-friendly. No profanity, slurs, insults about identity, or mean-spirited content. Poke fun at the situation, never the person.",
-            },
-            {
-              role: "user",
-              content: `Write a one-liner roast for someone who just hit a 404 page. Angle: ${angle}. Under 25 words. No hashtags, no emojis. Dry wit only.`,
-            },
-          ],
-          /* max_tokens caps both the cost of the call AND the size of any
-           * unexpected output (e.g. a prompt-injection payload trying to
-           * dump a long string back at us). */
-          max_tokens: 60,
-          /* temperature controls randomness: 0 is deterministic, 1 is
-           * creative. 0.8 gives varied output without going off the rails. */
-          temperature: 0.8,
-        }),
-      }
-    );
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model,
+        messages: [
+          /* The "system" message sets the assistant's behavior — its
+           * tone, topic, and what to avoid. The "user" message is the
+           * actual request. Keeping the system prompt strict reduces
+           * the chance of off-topic or unsafe output. */
+          {
+            role: "system",
+            content:
+              "You write short, witty one-liners for a fun 404 error page. Keep it clean, lighthearted, and family-friendly. No profanity, slurs, insults about identity, or mean-spirited content. Poke fun at the situation, never the person.",
+          },
+          {
+            role: "user",
+            content: `Write a one-liner roast for someone who just hit a 404 page. Angle: ${angle}. Under 25 words. No hashtags, no emojis. Dry wit only.`,
+          },
+        ],
+        /* max_tokens caps both the cost of the call AND the size of any
+         * unexpected output (e.g. a prompt-injection payload trying to
+         * dump a long string back at us). */
+        max_tokens: 60,
+        /* temperature controls randomness: 0 is deterministic, 1 is
+         * creative. 0.8 gives varied output without going off the rails. */
+        temperature: 0.8,
+      }),
+    });
 
     /* Anything other than 2xx — usually 401 (bad key), 429 (rate limited),
      * or 5xx (Groq itself is down). Fall back to a canned insult rather
      * than surfacing an error to the user. */
     if (!response.ok) {
       console.warn(`Groq API returned ${response.status}`);
-      return new Response(
-        JSON.stringify({ insult: randomFallback(), source: "fallback" }),
-        { status: 200, headers: CORS_HEADERS }
-      );
+      return new Response(JSON.stringify({ insult: randomFallback(), source: "fallback" }), {
+        status: 200,
+        headers: CORS_HEADERS,
+      });
     }
 
     const data = await response.json();
@@ -235,10 +230,10 @@ export default async function handler(request) {
 
     if (!insult) {
       console.warn("Groq response missing expected content shape.");
-      return new Response(
-        JSON.stringify({ insult: randomFallback(), source: "fallback" }),
-        { status: 200, headers: CORS_HEADERS }
-      );
+      return new Response(JSON.stringify({ insult: randomFallback(), source: "fallback" }), {
+        status: 200,
+        headers: CORS_HEADERS,
+      });
     }
 
     return new Response(JSON.stringify({ insult, source: "groq" }), {
@@ -248,10 +243,10 @@ export default async function handler(request) {
   } catch {
     /* Network-level failure (DNS, TCP, TLS) — fetch itself rejected.
      * Same fallback path as the !response.ok branch above. */
-    return new Response(
-      JSON.stringify({ insult: randomFallback(), source: "fallback" }),
-      { status: 200, headers: CORS_HEADERS }
-    );
+    return new Response(JSON.stringify({ insult: randomFallback(), source: "fallback" }), {
+      status: 200,
+      headers: CORS_HEADERS,
+    });
   }
 }
 

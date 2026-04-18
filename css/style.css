@@ -26,7 +26,10 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   background-color: var(--hap-bg);
   color: var(--hap-text);
   line-height: 1.6;

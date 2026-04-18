@@ -1,0 +1,19 @@
+{
+  "name": "hap-silly-404",
+  "version": "1.0.0",
+  "description": "Custom 404 page with serverless roast function — teaching project",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.0.0"
+  }
+}

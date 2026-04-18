@@ -197,8 +197,7 @@ async function loadRoast() {
     roastEl.textContent = data.insult.replace(/^["']+|["']+$/g, "");
     roastEl.classList.remove("loading");
   } catch {
-    roastEl.textContent =
-      "HAP tried to think of something clever. The Wi-Fi disagreed.";
+    roastEl.textContent = "HAP tried to think of something clever. The Wi-Fi disagreed.";
     roastEl.classList.remove("loading");
   }
 }

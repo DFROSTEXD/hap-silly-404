@@ -1,0 +1,6 @@
+runtimes:
+    - node@22.2.0
+tools:
+    - eslint@9.15.0
+    - opengrep@1.16.4
+    - trivy@0.69.3
