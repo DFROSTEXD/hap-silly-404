@@ -25,13 +25,33 @@ The tradeoff: agent mode can move fast and overshoot. The spec-driven workflow i
 
 ---
 
+## Prerequisites — install the extensions
+
+Agent mode requires two VS Code extensions. If you don't have them yet:
+
+1. Open the Command Palette: `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
+2. Type `Extensions: Install Extensions`
+3. Search for **GitHub Copilot** — install it
+4. Search for **GitHub Copilot Chat** — install it
+5. Reload VS Code when prompted
+
+You'll know both are active when you see the Copilot icon in the status bar at the bottom of the window.
+
+---
+
 ## How to launch a session
+
+**Via Command Palette (most reliable):**
 
 1. Open the Command Palette: `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
 2. Type `Chat: New Copilot CLI` and select it
 3. VS Code opens a chat panel on the side
 
-Alternatively: open the Chat view (`Ctrl+Alt+I`), click **New Chat (+)**, and choose **New Copilot CLI Session** from the dropdown.
+**Via Chat view:**
+Open the Chat view (`Ctrl+Alt+I`), click **New Chat (+)**, and choose **New Copilot CLI Session** from the dropdown.
+
+**Via Terminal panel:**
+In the Terminal panel, click the dropdown arrow next to the `+` (New Terminal) button and choose **GitHub Copilot CLI** from the list. This opens the same agent session in a terminal-adjacent panel.
 
 ---
 
