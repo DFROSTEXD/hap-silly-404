@@ -174,7 +174,7 @@ The mental model: the slash command in Claude Code was never the thing doing the
 
 You will run the same workflow three times before it matters.
 
-- **Pass 1A — PoC `homepage-404-button`.** Everyone builds the same tiny feature (a button on the landing page that links to a known-bad URL so visitors can trigger the 404). You run `execute ./prompts/homepage-404-button.md` — read that file before you run it. The purpose is to prove the workflow, not to ship a feature. If every student's proposal lands in roughly the same place, the workflow is working. You do NOT implement this one — the artifacts are the deliverable.
+- **Pass 1A — prescribed `homepage-404-button`.** Everyone builds the same tiny feature (a button on the landing page that links to a known-bad URL so visitors can trigger the 404). You run the full loop: `execute ./prompts/homepage-404-button.md` to propose, `openspec validate`, then `apply` one task at a time until the button is live. Because everyone builds the same thing, you can tell immediately if the workflow is working. That's the point — practice the loop on a known outcome before you own the feature.
 - **Pass 1B — Track 1, your real frontend feature.** You pick the feature. You use the `AGENTS.md` rule: `propose <your-feature-slug>`. You own the ambiguity. Now you implement it with `apply`.
 - **Pass 2 — Track 2, backend security feature.** Same `propose` + `apply` mechanism. The new thing in Track 2 is the Tests section of `spec.md` and a TDD cycle driven by the scenarios. The workflow is muscle memory by now; your cognitive load goes to the security content and the red-green discipline.
 

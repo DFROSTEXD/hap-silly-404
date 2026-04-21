@@ -14,13 +14,15 @@ This is a real codebase — a Netlify-deployed 404 page backed by a serverless f
 
 ## What you're building - completing both tracks
 
-A minimum of 2 new features, one each for the two tracks:
+Three deliverables, completed in order:
 
-**Track 1 — front-end feature:** change or add one or more somethings to the 404 page (or both pages) that makes the experience more engaging. Examples: change of html and/or css changing its content and/or look, dark mode toggle, clipboard share button, roast history for the session. You have full creative latitude on what to build. The security guardrails in `docs/reference/security-guardrails.md` apply regardless.
+**Part 4A — prescribed front-end feature (everyone builds the same one):** a button on the landing page that links to a known-bad URL to trigger the 404 page. You run the full loop — propose, validate, implement, archive — on a feature where the outcome is already known. This is the practice run. Doing it on a prescribed feature means everyone lands in roughly the same place, so you can tell if the workflow is working before you trust it with your own idea.
 
-**Track 2 — back-end security feature:** add a security improvement to `netlify/functions/insult.mjs`. Must include vitest tests. Examples: prompt injection prevention via path sanitization, structured error logging, input validation, response caching with fallback. The feature must not weaken any existing security check.
+**Part 4B — your front-end feature (self-chosen):** change or add something to the 404 page (or both pages) that makes the experience more engaging. Examples: dark mode toggle, clipboard share button, roast history for the session, a fun hover animation. Full creative latitude. The security guardrails in `docs/reference/security-guardrails.md` apply regardless. This one you implement.
 
-Both tracks follow the same workflow: propose → spec → implement → verify. You don't write code until a spec is approved by you for your agent.
+**Part 5 — your back-end security feature (self-chosen):** add a security improvement to `netlify/functions/insult.mjs`. Must include vitest tests written before the implementation. Examples: prompt injection prevention via path sanitization, structured error logging, input validation, response caching with fallback. The feature must not weaken any existing security check.
+
+Both tracks follow the same workflow: scaffold → propose → validate → implement → archive. You don't write code until the four spec artifacts exist and `openspec validate` passes.
 
 ---
 
@@ -225,7 +227,16 @@ Workflow:
    openspec validate homepage-404-button
    ```
 
-6. **Stop here.** The PoC is the artifact set, not a live button. Do not `apply` yet. The purpose of 4A is to verify the workflow before you trust it with your real feature. Keep the `openspec/changes/homepage-404-button/` folder around — it's part of your PR evidence.
+6. **Implement it.** Run `apply homepage-404-button` one task at a time. Confirm the button appears at `localhost:8888`. Run `npm run check`. This is the full loop — propose, validate, implement, verify — on a feature where you already know what the answer looks like. That's the point.
+
+7. **Commit before moving on.**
+
+   ```bash
+   git add -A
+   git commit -m "Part 4A: homepage-404-button artifacts and implementation"
+   ```
+
+   This gives you a clean stopping point. If anything in 4B goes sideways, you can see exactly what changed. Branches are a natural next step here — one per feature — but are not required for this assignment.
 
 ### Part 4B — your Track 1 feature
 
@@ -268,6 +279,13 @@ Workflow — shorter, because you've seen it once:
    This moves the change to `openspec/changes/archive/<YYYY-MM-DD>-<slug>/` and promotes the spec into `openspec/specs/`. Commit the archive move — it's the durable audit trail.
 
 6. Run `npm run check`. Fix anything it reports.
+
+7. **Commit before moving on.**
+
+   ```bash
+   git add -A
+   git commit -m "Part 4B: <your-feature-slug> implemented and archived"
+   ```
 
 ---
 
@@ -326,7 +344,12 @@ Workflow:
    openspec archive <your-security-feature-slug> --yes
    ```
 
-   Commit the archive move.
+7. **Commit.**
+
+   ```bash
+   git add -A
+   git commit -m "Part 5: <your-security-feature-slug> implemented and archived"
+   ```
 
 ---
 

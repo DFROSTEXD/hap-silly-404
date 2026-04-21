@@ -63,7 +63,10 @@ updated: 2026-04-18
 - [ ] `execute ./prompts/homepage-404-button.md` run in Copilot CLI
 - [ ] Four artifacts present under `openspec/changes/homepage-404-button/`
 - [ ] `openspec validate homepage-404-button` passes
-- [ ] Artifacts reviewed; NO implementation started (the artifacts are the deliverable for 4A)
+- [ ] Artifacts reviewed
+- [ ] `apply homepage-404-button` run one task at a time
+- [ ] Button appears at `localhost:8888` and `npm run check` passes
+- [ ] Committed: `git commit -m "Part 4A: homepage-404-button artifacts and implementation"`
 
 ## Track 1 — front-end feature (Part 4B)
 
@@ -75,6 +78,7 @@ updated: 2026-04-18
 - [ ] `openspec archive <your-feature-slug> --yes` run
 - [ ] `npm run check` passes
 - [ ] Any permanent constraints added to `AGENTS.md`
+- [ ] Committed: `git commit -m "Part 4B: <your-feature-slug> implemented and archived"`
 
 ## Track 2 — back-end security feature
 
@@ -87,6 +91,7 @@ updated: 2026-04-18
 - [ ] `npm test` passes
 - [ ] `npm run check` passes
 - [ ] Any permanent constraints added to `AGENTS.md`
+- [ ] Committed: `git commit -m "Part 5: <your-security-feature-slug> implemented and archived"`
 
 ## Submit
 
