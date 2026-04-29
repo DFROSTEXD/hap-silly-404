@@ -11,6 +11,7 @@
     "secretlint": "secretlint \"**/*\"",
     "check": "npm run lint && npm run format:check && npm run secretlint",
     "dev": "NETLIFY_DEV=true netlify dev",
+    "dev:local": "NETLIFY_DEV=true npx netlify dev",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -33,6 +34,7 @@
     "globals": "^16.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
+    "netlify-cli": "^26.0.0",
     "prettier": "^3.0.0",
     "secretlint": "^11.7.1"
   }
