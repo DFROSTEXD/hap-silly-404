@@ -1,6 +1,8 @@
 <!-- Generated 2026-04-29 by Copilot agent for openspec workflow -->
 
-### Requirement: Homepage contains a 404 trigger button
+# Spec: homepage-404-button
+
+## Requirement: Homepage contains a 404 trigger button
 
 WHEN a user visits `index.html`
 THEN the page displays a button with label "Trigger 404" that links to `/nonexistent-page`.

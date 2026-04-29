@@ -1,5 +1,7 @@
 <!-- Generated 2026-04-29 by Copilot agent for openspec workflow -->
 
+# Proposal: homepage-404-button
+
 ## Why
 
 This is the required practice run for Part 4A of the Silly 404 module. Adding a single homepage button that links to a known-bad URL gives everyone the same small, testable feature to exercise the openspec→agent→implement workflow.

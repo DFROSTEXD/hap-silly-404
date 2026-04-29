@@ -1,5 +1,7 @@
 <!-- Generated 2026-04-29 by Copilot agent for openspec workflow -->
 
+# Proposal: intent-classifier-prefilter
+
 ## Why
 
 We need a server-side intent prefilter to prevent off-topic or malicious prompts from reaching the Groq API. This reduces risk of role-deviation, denial-of-wallet attacks, and unintended data exposure.

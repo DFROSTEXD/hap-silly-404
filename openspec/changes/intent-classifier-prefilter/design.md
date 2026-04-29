@@ -1,5 +1,7 @@
 <!-- Generated 2026-04-29 by Copilot agent for openspec workflow -->
 
+# Design: intent-classifier-prefilter
+
 ## Context
 
 `insult.mjs` is a Netlify serverless function that receives GET requests and calls Groq to generate a roast. The handler already performs origin checks, misconfig guards, and rate limiting. We will insert a lightweight intent prefilter after the origin check.

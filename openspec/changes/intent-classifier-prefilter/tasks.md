@@ -1,5 +1,7 @@
 <!-- Generated 2026-04-29 by Copilot agent for openspec workflow -->
 
+# Tasks: intent-classifier-prefilter
+
 1. Add `openspec/changes/intent-classifier-prefilter/` artifacts (proposal/design/tasks/spec) — done.
 2. Write vitest tests:
    - Happy path: allowed prompt calls Groq and returns 200.
