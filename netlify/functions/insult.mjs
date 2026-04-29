@@ -291,7 +291,6 @@ function randomFallback() {
   return FALLBACK_INSULTS[Math.floor(Math.random() * FALLBACK_INSULTS.length)];
 }
 
-
 /**
  * Lightweight deterministic intent prefilter.
  * Returns true when the request looks like a 404/roast request and false
@@ -308,22 +307,27 @@ function randomFallback() {
 function isAllowedIntent(request) {
   try {
     const url = new URL(request.url);
-    const q = (url.searchParams.get('q') || '')
-      .toLowerCase()
-      .replace(/\+/g, ' ')
-      .trim();
+    const q = (url.searchParams.get("q") || "").toLowerCase().replace(/\+/g, " ").trim();
 
     if (!q) return true; // no query; allow
 
     // Simple allowlist: if any of these tokens appear we treat as allowed
-    const allowTokens = ['roast', '404', 'page not found', 'insult', 'missing page', 'give me a roast', 'roast me'];
+    const allowTokens = [
+      "roast",
+      "404",
+      "page not found",
+      "insult",
+      "missing page",
+      "give me a roast",
+      "roast me",
+    ];
 
     for (const t of allowTokens) {
       if (q.includes(t)) return true;
     }
 
     return false;
-  } catch (e) {
+  } catch {
     // On any parsing error, be permissive so we don't block legitimate requests
     return true;
   }

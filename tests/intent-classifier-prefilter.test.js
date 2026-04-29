@@ -1,5 +1,4 @@
-/* eslint-env node, vitest */
-/* global Request */
+/* global Request, global, process */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
