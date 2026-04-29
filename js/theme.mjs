@@ -11,8 +11,8 @@
  */
 export function getStoredTheme() {
   try {
-    return localStorage.getItem('hap-theme');
-  } catch (e) {
+    return localStorage.getItem("hap-theme");
+  } catch {
     // localStorage may be unavailable in some privacy modes
     return null;
   }
@@ -24,8 +24,8 @@ export function getStoredTheme() {
  */
 export function setStoredTheme(theme) {
   try {
-    localStorage.setItem('hap-theme', theme);
-  } catch (e) {
+    localStorage.setItem("hap-theme", theme);
+  } catch {
     // ignore write errors
   }
 }
@@ -35,8 +35,8 @@ export function setStoredTheme(theme) {
  * @param {'dark'|'light'} theme
  */
 export function applyTheme(theme) {
-  if (theme === 'dark') document.documentElement.classList.add('dark');
-  else document.documentElement.classList.remove('dark');
+  if (theme === "dark") document.documentElement.classList.add("dark");
+  else document.documentElement.classList.remove("dark");
 }
 
 /**
@@ -45,12 +45,12 @@ export function applyTheme(theme) {
  */
 export function getInitialTheme() {
   const stored = getStoredTheme();
-  if (stored === 'dark' || stored === 'light') return stored;
+  if (stored === "dark" || stored === "light") return stored;
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return "dark";
   }
-  return 'light';
+  return "light";
 }
 
 /**
@@ -58,8 +58,8 @@ export function getInitialTheme() {
  * @returns {'dark'|'light'} the new theme after toggling
  */
 export function toggleTheme() {
-  const isDark = document.documentElement.classList.contains('dark');
-  const next = isDark ? 'light' : 'dark';
+  const isDark = document.documentElement.classList.contains("dark");
+  const next = isDark ? "light" : "dark";
   applyTheme(next);
   setStoredTheme(next);
   return next;

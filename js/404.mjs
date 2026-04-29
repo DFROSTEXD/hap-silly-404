@@ -221,7 +221,7 @@ function loadPose() {
   caption.textContent = pose.caption;
 }
 
-import { applyTheme, getInitialTheme, toggleTheme } from './theme.mjs';
+import { applyTheme, getInitialTheme, toggleTheme } from "./theme.mjs";
 
 /* Initialize theme before doing other UI work */
 applyTheme(getInitialTheme());
@@ -250,12 +250,12 @@ document.querySelector("#new-roast-btn").addEventListener("click", () => {
 });
 
 /* Theme toggle wiring for the 404 page */
-const themeBtn = document.querySelector('#theme-toggle-btn');
+const themeBtn = document.querySelector("#theme-toggle-btn");
 if (themeBtn) {
-  const isDark = document.documentElement.classList.contains('dark');
-  themeBtn.textContent = isDark ? '☀️' : '🌙';
-  themeBtn.addEventListener('click', () => {
+  const isDark = document.documentElement.classList.contains("dark");
+  themeBtn.textContent = isDark ? "☀️" : "🌙";
+  themeBtn.addEventListener("click", () => {
     const next = toggleTheme();
-    themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+    themeBtn.textContent = next === "dark" ? "☀️" : "🌙";
   });
 }
